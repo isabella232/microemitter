@@ -88,5 +88,5 @@ class EventEmitter
     if evt is 'error' and listeners.length is 0 then throw rest[0]
     return this
 
-if module?.exports?
-  module.exports.EventEmitter = EventEmitter
+module.exports = EventEmitter
+

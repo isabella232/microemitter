@@ -5,3 +5,4 @@
  * export EventEmitter directly
  * drop requirejs support
  * do not export to global
+ * remove requirejs example

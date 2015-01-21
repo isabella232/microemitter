@@ -90,7 +90,3 @@ class EventEmitter
 
 if module?.exports?
   module.exports.EventEmitter = EventEmitter
-else if define?.amd?
-  define -> EventEmitter
-else
-  @['EventEmitter'] = EventEmitter   # export as a string to play nice with Google Closure Compiler

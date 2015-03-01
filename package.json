@@ -1,13 +1,9 @@
 {
   "name": "microemitter",
   "private": true,
-  "version": "0.1.0",
-  "description": "an experimental implementation of the oft-botched EventEmitter",
-  "main": "index.coffee",
-  "directories": {
-    "example": "examples"
-  },
+  "version": "0.2.0",
+  "main": "build/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "rm -fr build && mkdir -p build && coffee -p -b index.coffee > build/index.js"
   }
 }

@@ -1,8 +1,11 @@
 {
   "name": "microemitter",
-  "private": true,
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "build/index.js",
+  "licenses": [{
+    "type": "Apache-2.0",
+    "url": "http://www.apache.org/licenses/LICENSE-2.0"
+  }],
   "scripts": {
     "prepublish": "rm -fr build && mkdir -p build && coffee -p -b index.coffee > build/index.js"
   }

@@ -1,6 +1,6 @@
 var EventEmitter,
-  __slice = [].slice,
-  __hasProp = {}.hasOwnProperty;
+  slice = [].slice,
+  hasProp = {}.hasOwnProperty;
 
 EventEmitter = (function() {
   'use strict';
@@ -26,9 +26,9 @@ EventEmitter = (function() {
     return this;
   };
 
-  defineProperty = Object.defineProperty || function(obj, prop, _arg) {
+  defineProperty = Object.defineProperty || function(obj, prop, arg) {
     var value;
-    value = _arg.value;
+    value = arg.value;
     return obj[prop] = value;
   };
 
@@ -41,13 +41,13 @@ EventEmitter = (function() {
   })();
 
   mixin = function(obj) {
-    var prop, prot, _results;
+    var prop, prot, results;
     prot = EventEmitter.prototype;
-    _results = [];
+    results = [];
     for (prop in prot) {
-      _results.push(obj[prop] = prot[prop]);
+      results.push(obj[prop] = prot[prop]);
     }
-    return _results;
+    return results;
   };
 
   init = function(obj) {
@@ -70,13 +70,13 @@ EventEmitter = (function() {
   }
 
   EventEmitter.prototype.on = function(evt, listener) {
-    var lid, listeners, _base;
+    var base, lid, listeners;
     if (listener == null) {
       throw new Error('Listener is required!');
     }
     init(this);
     this.emit('newListener', evt, listener);
-    listeners = (_base = this._events)[evt] || (_base[evt] = {});
+    listeners = (base = this._events)[evt] || (base[evt] = {});
     if (this[idKey] in listener) {
       lid = listener[this[idKey]];
     } else {
@@ -95,7 +95,7 @@ EventEmitter = (function() {
     wrappedListener = (function(_this) {
       return function() {
         var rest;
-        rest = 1 <= arguments.length ? __slice.call(arguments, 0) : [];
+        rest = 1 <= arguments.length ? slice.call(arguments, 0) : [];
         _this.off(evt, wrappedListener);
         return listener.apply(_this, rest);
       };
@@ -104,13 +104,13 @@ EventEmitter = (function() {
   };
 
   EventEmitter.prototype.off = function(evt, listener) {
-    var key, listenerId, listeners, _ref;
+    var key, listenerId, listeners, ref;
     init(this);
     switch (arguments.length) {
       case 0:
-        _ref = this._events;
-        for (key in _ref) {
-          if (!__hasProp.call(_ref, key)) continue;
+        ref = this._events;
+        for (key in ref) {
+          if (!hasProp.call(ref, key)) continue;
           delete this._events[key];
         }
         break;
@@ -129,14 +129,14 @@ EventEmitter = (function() {
   };
 
   EventEmitter.prototype.emit = function() {
-    var evt, id, listener, listeners, rest, _ref;
-    evt = arguments[0], rest = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+    var evt, id, listener, listeners, ref, rest;
+    evt = arguments[0], rest = 2 <= arguments.length ? slice.call(arguments, 1) : [];
     init(this);
-    listeners = (_ref = this._events[evt]) != null ? _ref : [];
+    listeners = (ref = this._events[evt]) != null ? ref : [];
     for (id in listeners) {
-      if (!__hasProp.call(listeners, id)) continue;
+      if (!hasProp.call(listeners, id)) continue;
       listener = listeners[id];
-      listener.call.apply(listener, [this].concat(__slice.call(rest)));
+      listener.call.apply(listener, [this].concat(slice.call(rest)));
     }
     if (evt === 'error' && listeners.length === 0) {
       throw rest[0];

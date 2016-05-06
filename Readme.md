@@ -1,13 +1,7 @@
 # microemitter
 
-yet another event emitter.
+Yet another event emitter.
 
-This package exports `build/index.js`; to transpile coffeescript sources into js, type in:
+# License
 
-```
-npm run prepublish
-```
-
-# license
-
-2015 Koding, Inc
+2016 Koding, Inc. (Apache-2.0)
